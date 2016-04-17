@@ -1,4 +1,4 @@
-object Robot {
+object Robot1 {
   def main(args:Array[String]){
     val lines = io.Source.fromFile("data/data.txt").getLines();
     
@@ -14,7 +14,7 @@ object Robot {
       println(calculate(commands,coordinates,tracker_flag))
     }
     else
-       println("Not a valid command. Robot is not placed on the table. Use 'PLACE' command as first argument");
+       println("Not a valid command. Robot is not placed on the table. Use 'PLACE' as first coomand to robot");
         
     //}
     
@@ -25,7 +25,7 @@ object Robot {
       //println("Enter")
       System.exit(0)
     }
-    //val a =1;
+   
     commands(tracker_flag._1).toLowerCase().split(" ")(0) match {
       case "place" => place(commands,(commands(tracker_flag._1).split(" ")(1).split(",")(0).toInt,commands(tracker_flag._1).split(" ")(1).split(",")(1).toInt,commands(tracker_flag._1).split(" ")(1).split(",")(2)),tracker_flag)
       case "move"  => move(commands,coordinates,tracker_flag)
@@ -35,65 +35,32 @@ object Robot {
     }
   }
   def place(commands:Array[String],coordinates:(Int,Int,String),tracker_flag:(Int,Int,String))={
-    //if(on_table(coordinates))
-      calculate(commands:Array[String],(coordinates._1,coordinates._2,coordinates._3),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
+    if(!on_table("place",coordinates)){
+      println("Cannot place the robot. Issue with Coordinates("+coordinates._1+","+coordinates._2+")")
+      System.exit(0)
+    }
+      
+    calculate(commands:Array[String],(coordinates._1,coordinates._2,coordinates._3),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
     //else
      // return 
   }
   def move(commands:Array[String],coordinates:(Int,Int,String),tracker_flag:(Int,Int,String))={
-    if(coordinates._3.toLowerCase() == "north"){
-     calculate(commands:Array[String],(coordinates._1,coordinates._2+1,coordinates._3),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-    else if(coordinates._3.toLowerCase() == "south"){
-      calculate(commands:Array[String],(coordinates._1,coordinates._2-1,coordinates._3),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-    else if(coordinates._3.toLowerCase() == "east"){
-      calculate(commands:Array[String],(coordinates._1+1,coordinates._2,coordinates._3),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-    else{
-      calculate(commands:Array[String],(coordinates._1-1,coordinates._2,coordinates._3),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-  }
-  def right(commands:Array[String],coordinates:(Int,Int,String),tracker_flag:(Int,Int,String))={
-    if(coordinates._3.toLowerCase() == "north"){
-     calculate(commands:Array[String],(coordinates._1,coordinates._2,"east"),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-    else if(coordinates._3.toLowerCase() == "south"){
-      calculate(commands:Array[String],(coordinates._1,coordinates._2,"west"),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-    else if(coordinates._3.toLowerCase() == "east"){
-      calculate(commands:Array[String],(coordinates._1,coordinates._2,"south"),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-    else{
-      calculate(commands:Array[String],(coordinates._1,coordinates._2,"north"),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-  }
-  
-  def left(commands:Array[String],coordinates:(Int,Int,String),tracker_flag:(Int,Int,String))={
-    if(coordinates._3.toLowerCase() == "north"){
-     calculate(commands:Array[String],(coordinates._1,coordinates._2,"west"),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-    else if(coordinates._3.toLowerCase() == "south"){
-      calculate(commands:Array[String],(coordinates._1,coordinates._2,"east"),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-    else if(coordinates._3.toLowerCase() == "east"){
-      calculate(commands:Array[String],(coordinates._1,coordinates._2,"north"),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-    else{
-      calculate(commands:Array[String],(coordinates._1,coordinates._2,"south"),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-    }
-  }
-  def report(commands:Array[String],coordinates:(Int,Int,String),tracker_flag:(Int,Int,String))={
-    /*if(commands.length != tracker_flag._1){
-      calculate(commands,coordinates,tracker_flag)
-    }*/
-    println(coordinates._1+","+coordinates._2+","+coordinates._3)
-    calculate(commands:Array[String],(coordinates._1,coordinates._2,coordinates._3),(tracker_flag._1+1,tracker_flag._2,tracker_flag._3))
-  }
-  def on_table(coordinates:(Int,Int,String)):Boolean={
+    if(!on_table("move",coordinates)){
+      println("Cannot move the Robot on "+coordinates._3.toUpperCase+" after the coordinates ("+coordinates._1+","+coordinates._2+")")
+      System.exit(0)
+  def on_table(command_name:String,coordinates:(Int,Int,String)):Boolean={
+    //specify the matrix on which the robot is going to move
     val matrix = 5;
-    if(coordinates._1+1 <= 0 && coordinates._2 >= 0 && coordinates._1 <=matrix && coordinates._2 <=matrix){
-      return true
+    if(command_name.toLowerCase == "place" && coordinates._1 >=0 && coordinates._1 < matrix && coordinates._2 >= 0 && coordinates._2 < matrix){
+      return true;
+    }
+    else if(command_name.toLowerCase == "move"){
+      coordinates._3.toLowerCase match {
+        case "north" => if(coordinates._2+1 < matrix) return true else false
+        case "south" => if(coordinates._2-1 >= 0 ) return true else false
+        case "east" => if(coordinates._1+1 < matrix ) return true else false
+        case "west" => if(coordinates._1-1 >= 0 ) return true else false
+      }
     }
     else
       return false;

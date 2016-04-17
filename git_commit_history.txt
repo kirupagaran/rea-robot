@@ -1,0 +1,83 @@
+commit fb15265f6dfdd6ef2252f7b7143aba999f98129d
+Author: kirupagaran <kirupagaran.d@gmail.com>
+Date:   Sun Apr 17 21:12:01 2016 +1000
+
+    v1.4 - Added Logic to ignore the MOVE commands that push the robot out of the table. Also added comments to the project
+
+commit e87ada9bf11bae9c710fd54aca58fd5c303d3a7c
+Author: kirupagaran <kirupagaran.d@gmail.com>
+Date:   Sun Apr 17 20:07:29 2016 +1000
+
+    v1.3 - Added validation to prevent robot moving out of the table grid in on_table() method
+
+commit 209434d4961bf92d307a8b8340a79adc545232e9
+Author: kirupagaran <kirupagaran.d@gmail.com>
+Date:   Sun Apr 17 18:41:28 2016 +1000
+
+    v1.2 - Added logic for REPORT command and on_table() method
+
+commit 9d69f9b4015ff9b3f1a840738db70c4cc4fb339b
+Author: kirupagaran <kirupagaran.d@gmail.com>
+Date:   Sun Apr 17 15:37:56 2016 +1000
+
+    v1.1 - Added logic for MOVE, RIGHT and LEFT commands. Deleted class files and readme.txt
+
+commit 90eab5e29a3e4c6865fbe2c2a12c90d9cdbe5a13
+Merge: 7362e40 2a7091c
+Author: kirupagaran <kirupagaran.d@gmail.com>
+Date:   Sun Apr 17 14:13:36 2016 +1000
+
+    Merge branch 'master' of https://github.com/kirupagaran/rea-robot
+
+commit 7362e40456de88fa93afe7a1d2174dfd02dd8cda
+Author: kirupagaran <kirupagaran.d@gmail.com>
+Date:   Sun Apr 17 14:09:21 2016 +1000
+
+    V1.0 - Basic algoritm structure. Pushing first commit to master
+
+commit 2a7091caff3fc436995d3ce16865ebb1e1f1fc95
+Author: Kirupagaran <kirupagaran.d@gmail.com>
+Date:   Sun Apr 17 14:01:22 2016 +1000
+
+    Initial commit
+
+commit ab6363a0e581be70f8aab34a140147c21fb98f8e
+Merge: 6e852de 4a5cb96
+Author: Mike Williams <mike.williams@rea-group.com>
+Date:   Wed Nov 18 07:52:44 2015 +0100
+
+    Merge pull request #156 from recruiting/not_just_ruby
+    
+    Avoid explicit mention of Ruby
+
+commit 6e852de6b79e2ae306c18c2757dd37ae309ccdbb
+Merge: e703252 bc24e78
+Author: Fred Wu <fred.wu@rea-group.com>
+Date:   Wed Nov 18 09:47:07 2015 +1100
+
+    Merge pull request #155 from recruiting/evaluation-criteria
+    
+    Added evaluation criteria
+
+commit bc24e785d035dc688da10e099ba697d2bc958cd6
+Author: Fred Wu <ifredwu@gmail.com>
+Date:   Thu Oct 29 10:20:59 2015 +1100
+
+    Updated README based on @mwilliams and @adam-fitzpatrick's feedback
+
+commit 4a5cb96d779e6272a0cc5a228f32cef0cf5b80e4
+Author: Mike Williams <mdub@dogbiscuit.org>
+Date:   Fri Nov 6 10:26:56 2015 +1100
+
+    Avoid explicit mention of Ruby.
+    
+    ... because different teams in REA need different skills.
+    
+    Additional constraints (such as language preferences) can be
+    communicated to the candidate out-of-band.
+
+commit e70325242a4c41d4d5a87b5656f49880ec39f73f
+Author: Mike Williams <mike.williams@rea-group.com>
+Date:   Wed Jun 18 13:44:32 2014 +1000
+
+    Baseline, including problem description.
